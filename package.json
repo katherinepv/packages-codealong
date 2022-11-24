@@ -2,7 +2,7 @@
   "name": "packages-codealong",
   "version": "1.0.0",
   "description": "Codealong for NPM lesson",
-  "homepage": "",
+  "homepage": "https://katherinepv.github.io/package-codealong",
   "author": "",
   "private": true,
   "scripts": {
@@ -14,7 +14,10 @@
   },
   "keywords": [],
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "canvas-confetti": "^1.6.0",
+    "colorthief": "^2.2.0"
+  },
   "devDependencies": {
     "css-loader": "^6.7.1",
     "gh-pages": "^4.0.0",
