@@ -5,12 +5,13 @@ import ColorThief from "colorthief";
 const colorThief = new ColorThief();
 
 const triggerConfettiButton = document.querySelector(".confetti-button");
-const displayedImage = document.querySelector("#image");
+const dogImage = document.querySelector("#image");
 const imageInputBar = document.querySelector("#url-user-input");
 
-console.log(imageInputBar);
-
-const changeDisplayedImage = () => {};
+const handleUrlInput = (event) => {
+  dogImage.src = event.target.value;
+};
+console.log(handleUrlInput);
 
 const fireConfetti = () => {
   confetti({
@@ -25,9 +26,30 @@ const fireConfetti = () => {
   });
 };
 
+const onImageLoad = () => {
+  const color = colorThief.getColor(dogImage);
+  const body = document.querySelector("body");
+
+  body.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+};
+
 // get colour from the image DOM Element
 // check if image has loaded
-// console.log what the colours are in the
+// if it has, get the colour
+// otherwise tell it to get the colour once it's loaded the image
+// console.log what the colours are in the console
+
+if (dogImage.complete) {
+  onImageLoad();
+  fireConfetti();
+} else {
+  dogImage.addEventListener("load", onImageLoad);
+  dogImage.addEventListener("load", fireConfetti);
+}
+
+//if the image has been successfully downloaded, run the function right away,
+//otherwise, wait for the "load" event.
+
+imageInputBar.addEventListener("input", handleUrlInput);
 
 triggerConfettiButton.addEventListener("click", fireConfetti);
-imageInputBar.addEventListener("input", changeDisplayedImage);
